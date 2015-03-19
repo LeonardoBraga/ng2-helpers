@@ -69,6 +69,8 @@
       bind = componentDO.bind;
 
       ddo = {
+        priority: componentDO.priority,
+        terminal: componentDO.terminal,
         controller: className,
         controllerAs: componentDO.controllerAs || className,
 
@@ -79,7 +81,7 @@
         scope: (angularVersion.minor < 4 && bind) || {},
 
         // translating a few more of the new properties
-        require: componentDO.directives || componentDO.require,
+        require: componentDO.directives,
         template: templateDO && templateDO.inline,
         templateUrl: templateDO && templateDO.url
       };
