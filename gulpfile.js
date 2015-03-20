@@ -35,5 +35,12 @@ gulp.task('test:1.3', function(cb) {
   return karma.start(karmaConfig, cb);
 });
 
+gulp.task('test:1.4', function(cb) {
+  var karmaConfig = {
+    configFile: path.join(__dirname, 'karma.angular-1.4.conf.js')
+  };
+
+  return karma.start(karmaConfig, cb);
+});
 
 gulp.task('default', ['clean', 'build']);
