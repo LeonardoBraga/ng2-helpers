@@ -68,13 +68,13 @@ This helper defines the template of your directive. It supports the following pr
 
    ```js
    Template({
-     inline: '<span>This is the template {{ vm.value }}</span>'
+      inline: '<span>This is the template {{ vm.value }}</span>'
    })
    .Component({
-     controllerAs: 'vm'
+      controllerAs: 'vm'
    })
    .Class(
-     ...
+      ...
    );
    ```
 
@@ -83,16 +83,16 @@ This helper defines the template of your directive. It supports the following pr
 
    ```js
    Module({
-     name: 'moduleName'
+      name: 'moduleName'
    })
    .Template({
-     url: 'custom-directive.tpl.html'
+      url: 'custom-directive.tpl.html'
    })
    .Component({
-     ...
+      ...
    })
    .Class(
-     ...
+      ...
    );
    ```
 
@@ -106,11 +106,11 @@ or class
 
    ```js
    Component({
-     selector: 'userInfo',
-     ...
+      selector: 'userInfo',
+      ...
    })
    .Class(
-     ...
+      ...
    );
    ```
 
@@ -119,14 +119,14 @@ or class
 
    ```js
    Component({
-     bind: {
-       label: '@',
-       data: '='
-     },
-     ...
+      bind: {
+        label: '@',
+        data: '='
+      },
+      ...
    })
    .Class(
-     ...
+      ...
    );
    ```
 
@@ -136,13 +136,13 @@ passed to the helper `Class` if not specified
 
    ```js
    Component({
-     controllerAs: 'ctrl'
+      controllerAs: 'ctrl'
    })
    .Template({
-     inline: 'User name: {{ ctrl.userName }}'
+      inline: 'User name: {{ ctrl.userName }}'
    })
    .Class(function userInfo() {
-     this.userName = 'John Doe';
+      this.userName = 'John Doe';
    });
    ```
 
@@ -151,11 +151,11 @@ passed to the helper `Class` if not specified
 
    ```js
    Component({
-     directives: ['ngModel'],
+      directives: ['ngModel'],
      ...
    })
    .Class(
-     ...
+      ...
    );
    ```
 
@@ -164,11 +164,11 @@ passed to the helper `Class` if not specified
 
    ```js
    Component({
-     services: ['$rootScope', '$timeout', 'CustomService'],
-     ...
+      services: ['$rootScope', '$timeout', 'CustomService'],
+      ...
    })
    .Class(function customDirective($rootScope, $timeout, CustomService) {
-     ...
+      ...
    });
    ```
 
@@ -180,24 +180,24 @@ passed to the helper `Class` if not specified
 
    ```js
    Component({
-     compile: function(elem, attrs, transclude) { },
-     link: function(scope, elem, attrs) { },
-     ...
+      compile: function(elem, attrs, transclude) { },
+      link: function(scope, elem, attrs) { },
+      ...
    })
    .Class(
-     ...
+      ...
    );
    ```
 
    ```js
    Component({
-     compile: function(elem, attrs, transclude) { },
-     pre: function(scope, elem, attrs) { },
-     post: function(scope, elem, attrs) { },
-     ...
+      compile: function(elem, attrs, transclude) { },
+      pre: function(scope, elem, attrs) { },
+      post: function(scope, elem, attrs) { },
+      ...
    })
    .Class(
-     ...
+      ...
    );
    ```
 
@@ -207,13 +207,13 @@ passed to the helper `Class` if not specified
 
    ```js
    Component({
-     terminal: true,
-     priority: 1000,
-     compile: function(elem, attrs, transclude) { },
-     ...
+      terminal: true,
+      priority: 1000,
+      compile: function(elem, attrs, transclude) { },
+      ...
    })
    .Class(
-     ...
+      ...
    );
    ```
 
