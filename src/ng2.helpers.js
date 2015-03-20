@@ -53,7 +53,7 @@
       moduleDO = self.moduleDO,
       className, moduleName, bind, ddo, compile, pre, post, link;
 
-    if ((componentDO || self.Component.processed) && (classDO || self.Class.processed)) {
+    if (self.Component.processed && self.Class.processed) {
       className = functionName(classDO);
 
       if (!className) {
@@ -65,6 +65,8 @@
       if (!moduleName) {
         throw new Error('The module name needs to be provided.');
       }
+
+      componentDO = componentDO ||  Object.create(null);
 
       bind = componentDO.bind;
 
@@ -78,7 +80,7 @@
         bindToController: (angularVersion.minor > 3 && bind) || true,
 
         // ... or passing it in the scope for 1.3
-        scope: (angularVersion.minor < 4 && bind) || {},
+        scope: (angularVersion.minor < 4 && bind) || Object.create(null),
 
         // translating a few more of the new properties
         require: componentDO.directives,
