@@ -9,15 +9,11 @@
     throw new Error('This library requires Angular 1.3 and above.');
   }
 
-  function isInitialized(chainedMetaDO) {
-    return chainedMetaDO && chainedMetaDO.composeMetaDO === composeMetaDO;
-  }
-
   function composeMetaDO(definitionObject, helper, chainedMetaDO) {
     var field = helper[0].toLowerCase() + helper.slice(1) + 'DO',
       metaDO;
 
-    if (isInitialized(chainedMetaDO)) {
+    if (chainedMetaDO) {
       metaDO = chainedMetaDO;
     } else {
       metaDO = { composeMetaDO: composeMetaDO };
@@ -66,7 +62,7 @@
         throw new Error('The module name needs to be provided.');
       }
 
-      componentDO = componentDO ||  Object.create(null);
+      componentDO = componentDO || {};
 
       bind = componentDO.bind;
 
@@ -80,7 +76,7 @@
         bindToController: (angularVersion.minor > 3 && bind) || true,
 
         // ... or passing it in the scope for 1.3
-        scope: (angularVersion.minor < 4 && bind) || Object.create(null),
+        scope: (angularVersion.minor < 4 && bind) || {},
 
         // translating a few more of the new properties
         require: componentDO.directives,
