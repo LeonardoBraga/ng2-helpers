@@ -12,13 +12,13 @@ Usage
 -----
 
 In order to create a directive using this library, you need to call at least `Component` and
-`Class`. You can call the helpers in any order, respecting that either `Component` or `Class` is
-the last one to be called.
+`Class`. You can call the helpers in any order, as long as either `Component` or `Class` is
+the last one.
 
 The directives created by this library follow the conventions below:
 - They always have an isolated scope.
 - They always have `controllerAs` defined, either by directly setting the property in the
-`Component` helper or by using the name of the function passed to the `Class` helper. Check
+`Component` helper or by using the name of the function passed to the `Class` helper.
 - They always have their `scope` bound to the controller by using `bindToController`.
 
 
@@ -33,7 +33,7 @@ In order to do so, currently, you can use two different approaches:
 
 #####1. Module's `name`
 
-```js
+```javascript
 Module({
   name: 'moduleName'
 })
@@ -47,7 +47,7 @@ Module({
 
 #####2. Component's `module`
 
-```js
+```javascript
 Component({
   module: 'moduleName',
   ...
@@ -66,7 +66,7 @@ This helper defines the template of your directive. It supports the following pr
 
 - `inline`: maps to the `template` property of the DDO
 
-   ```js
+   ```javascript
    Template({
       inline: '<span>This is the template {{ vm.value }}</span>'
    })
@@ -81,7 +81,7 @@ This helper defines the template of your directive. It supports the following pr
 
 - `url`: maps to the `templateUrl` property of the DDO
 
-   ```js
+   ```javascript
    Module({
       name: 'moduleName'
    })
@@ -104,7 +104,7 @@ This helper defines the main aspects of the directive. It supports the following
 - `selector`: sets the directive name, in camel case, which will match an element tag, attribute
 or class
 
-   ```js
+   ```javascript
    Component({
       selector: 'userInfo',
       ...
@@ -117,7 +117,7 @@ or class
 
 - `bind`: maps to `bindToController` in Angular 1.4+ and to `scope` in Angular 1.3
 
-   ```js
+   ```javascript
    Component({
       bind: {
         label: '@',
@@ -134,7 +134,7 @@ or class
 - `controllerAs`: maps to `controllerAs` property of the DDO. It will use the name of the function
 passed to the helper `Class` if not specified
 
-   ```js
+   ```javascript
    Component({
       controllerAs: 'ctrl'
    })
@@ -149,7 +149,7 @@ passed to the helper `Class` if not specified
 
 - `directives`: maps to `requires` property of the DDO.
 
-   ```js
+   ```javascript
    Component({
       directives: ['ngModel'],
      ...
@@ -162,7 +162,7 @@ passed to the helper `Class` if not specified
 
 - `services`: maps to `$inject` property of the function passed to the helper `Class`
 
-   ```js
+   ```javascript
    Component({
       services: ['$rootScope', '$timeout', 'CustomService'],
       ...
@@ -178,7 +178,7 @@ passed to the helper `Class` if not specified
    `Component` helper comes a plus: you can define `compile` *and* `link` (or `pre` and `post`)
    separately, and the helper will combine them so they're executed as expected.
 
-   ```js
+   ```javascript
    Component({
       compile: function(elem, attrs, transclude) { },
       link: function(scope, elem, attrs) { },
@@ -189,7 +189,7 @@ passed to the helper `Class` if not specified
    );
    ```
 
-   ```js
+   ```javascript
    Component({
       compile: function(elem, attrs, transclude) { },
       pre: function(scope, elem, attrs) { },
@@ -205,7 +205,7 @@ passed to the helper `Class` if not specified
 - `priority` and `terminal`
    You can also set the DDO's properties `priority` and `terminal` through the `Component` helper:
 
-   ```js
+   ```javascript
    Component({
       terminal: true,
       priority: 1000,
@@ -223,7 +223,7 @@ passed to the helper `Class` if not specified
 This helper defines the controller *class* function that will be used by the directive. The
 function must have a name, and its name will be used to register the controller.
 
-```js
+```javascript
 Component(
   ...
 )
@@ -241,3 +241,7 @@ and most likely will - rely on functionality that cannot be mimicked with ES5.
 
 Angular 2.0 itself is still under heavy development and the syntax or the properties names can
 change, so the helpers here *can* become out-of-sync with Angular's 2.0 official syntax.
+
+Borrowing from [PhoneGap's goal](http://phonegap.com/2012/05/09/phonegap-beliefs-goals-and-philosophy/),
+the ultimate purpose of this project is to cease to exist - eventually we'll be able to write
+pure Angular 2.0 applications in ES6, leaving 1.X to its deserved rest.
