@@ -11,11 +11,9 @@ var paths = {
   dist: 'dist'
 };
 
-
 gulp.task('clean', function(cb) {
   del([paths.dist], cb);
 });
-
 
 gulp.task('build', function() {
   return gulp.src(paths.scripts)
@@ -25,7 +23,6 @@ gulp.task('build', function() {
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest(paths.dist));
 });
-
 
 gulp.task('test:1.3', function(cb) {
   var karmaConfig = {
@@ -42,5 +39,7 @@ gulp.task('test:1.4', function(cb) {
 
   return karma.start(karmaConfig, cb);
 });
+
+gulp.task('test', ['test:1.4', 'test:1.3']);
 
 gulp.task('default', ['clean', 'build']);
