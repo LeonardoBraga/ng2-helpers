@@ -11,8 +11,8 @@ var paths = {
   dist: 'dist'
 };
 
-gulp.task('clean', function(cb) {
-  del([paths.dist], cb);
+gulp.task('clean', function(done) {
+  del([paths.dist], done);
 });
 
 gulp.task('build', function() {
@@ -24,20 +24,20 @@ gulp.task('build', function() {
     .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('test:1.3', function(cb) {
+gulp.task('test:1.3', function(done) {
   var karmaConfig = {
     configFile: path.join(__dirname, 'karma.angular-1.3.conf.js')
   };
 
-  return karma.start(karmaConfig, cb);
+  karma.start(karmaConfig, done);
 });
 
-gulp.task('test:1.4', function(cb) {
+gulp.task('test:1.4', function(done) {
   var karmaConfig = {
     configFile: path.join(__dirname, 'karma.angular-1.4.conf.js')
   };
 
-  return karma.start(karmaConfig, cb);
+  karma.start(karmaConfig, done);
 });
 
 gulp.task('test', ['test:1.4', 'test:1.3']);
