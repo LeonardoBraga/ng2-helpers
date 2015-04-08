@@ -11,9 +11,8 @@ down the road.
 Usage
 -----
 
-In order to create a directive using this library, you need to call at least `Component` and
-`Class`. You can call the helpers in any order, as long as either `Component` or `Class` is
-the last one.
+To create a directive using this library, you need to call at least `Component` and `Class`.
+You can call the helpers in any order, as long as either `Component` or `Class` is the last one.
 
 The directives created by this library follow the conventions below:
 - They always have an isolated scope.
@@ -29,7 +28,7 @@ and provide a [Directive Definition Object](https://docs.angularjs.org/api/ng/se
 Since Angular 2.0 leverages ES6 to deal with modules, it was necessary to create a way to specify
 the module name that owns the directive being created.
 
-In order to do so, currently, you can use two different approaches:
+To define the module you can use:
 
 #####1. Module's `name`
 
@@ -57,7 +56,7 @@ Component({
 );
 ```
 
-Also, in order to specify the module's dependencies, you can use two different approaches:
+To specify the module's dependencies you can use:
 
 #####1. Module's `imports`
 
