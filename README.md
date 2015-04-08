@@ -57,7 +57,38 @@ Component({
 );
 ```
 
-Once you've selected the style you prefer, it's recommended that you stick to it to be consistent.
+Also, in order to specify the module's dependencies, you can use two different approaches:
+
+#####1. Module's `imports`
+
+```javascript
+Module({
+  name: 'moduleName',
+  imports: ['module1', 'module2']
+})
+.Component({
+  ...
+})
+.Class(
+  ...
+);
+```
+
+#####2. Component's `moduleImports`
+
+```javascript
+Component({
+  module: 'moduleName',
+  moduleImports: ['module1', 'module2']
+  ...
+})
+.Class(
+  ...
+);
+```
+
+Once you've selected which helper you prefer to deal with modules, it's recommended that you stick
+to it to be consistent.
 
 
 ###Template
