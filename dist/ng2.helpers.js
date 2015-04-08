@@ -11,29 +11,26 @@
 
   function composeMetaDO(definitionObject, helper, chainedMetaDO) {
     var field = helper[0].toLowerCase() + helper.slice(1) + 'DO',
-      metaDO;
+      helperReplacement = function() {
+        throw new Error('You cannot call ' + helper + ' twice in the same composition.');
+      };
 
-    if (chainedMetaDO) {
-      metaDO = chainedMetaDO;
-    } else {
-      metaDO = { composeMetaDO: composeMetaDO };
+    helperReplacement.processed = true;
+
+    if (!chainedMetaDO) {
+      chainedMetaDO = {};
 
       helpers.forEach(function(helper) {
-        metaDO[helper] = window[helper];
+        chainedMetaDO[helper] = window[helper];
       });
     }
 
-    metaDO[field] = definitionObject;
+    chainedMetaDO[field] = definitionObject;
+    chainedMetaDO[helper] = helperReplacement;
 
-    metaDO[helper] = function() {
-      throw new Error('You cannot call ' + helper + ' twice in the same composition.');
-    };
+    process(chainedMetaDO);
 
-    metaDO[helper].processed = true;
-
-    process(metaDO);
-
-    return metaDO;
+    return chainedMetaDO;
   }
 
   function functionName(fn) {
@@ -47,7 +44,7 @@
       templateDO = self.templateDO,
       classDO = self.classDO,
       moduleDO = self.moduleDO,
-      className, moduleName, bind, ddo, compile, pre, post, link;
+      className, moduleName, moduleImports, bind, ddo, compile, pre, post, link;
 
     if (self.Component.processed && self.Class.processed) {
       className = functionName(classDO);
@@ -56,7 +53,13 @@
         throw new Error('The Class function cannot be anonymous.');
       }
 
-      moduleName = (moduleDO && moduleDO.name) || (componentDO && componentDO.module);
+      if (moduleDO) {
+        moduleName = moduleDO.name;
+        moduleImports = moduleDO.imports;
+      } else {
+        moduleName = componentDO.module;
+        moduleImports = componentDO.moduleImports;
+      }
 
       if (!moduleName) {
         throw new Error('The module name needs to be provided.');
@@ -100,9 +103,9 @@
       }
 
       // translating "services"
-      classDO.$inject = componentDO.services || classDO.$inject || componentDO.$inject;
+      classDO.$inject = componentDO.services || classDO.$inject;
 
-      angular.module(moduleName)
+      angular.module(moduleName, moduleImports)
         .controller(className, classDO)
         .directive(componentDO.selector, function() {
           return ddo;

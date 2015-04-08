@@ -11,29 +11,26 @@
 
   function composeMetaDO(definitionObject, helper, chainedMetaDO) {
     var field = helper[0].toLowerCase() + helper.slice(1) + 'DO',
-      metaDO;
+      helperReplacement = function() {
+        throw new Error('You cannot call ' + helper + ' twice in the same composition.');
+      };
 
-    if (chainedMetaDO) {
-      metaDO = chainedMetaDO;
-    } else {
-      metaDO = { composeMetaDO: composeMetaDO };
+    helperReplacement.processed = true;
+
+    if (!chainedMetaDO) {
+      chainedMetaDO = {};
 
       helpers.forEach(function(helper) {
-        metaDO[helper] = window[helper];
+        chainedMetaDO[helper] = window[helper];
       });
     }
 
-    metaDO[field] = definitionObject;
+    chainedMetaDO[field] = definitionObject;
+    chainedMetaDO[helper] = helperReplacement;
 
-    metaDO[helper] = function() {
-      throw new Error('You cannot call ' + helper + ' twice in the same composition.');
-    };
+    process(chainedMetaDO);
 
-    metaDO[helper].processed = true;
-
-    process(metaDO);
-
-    return metaDO;
+    return chainedMetaDO;
   }
 
   function functionName(fn) {
@@ -106,7 +103,7 @@
       }
 
       // translating "services"
-      classDO.$inject = componentDO.services || classDO.$inject || componentDO.$inject;
+      classDO.$inject = componentDO.services || classDO.$inject;
 
       angular.module(moduleName, moduleImports)
         .controller(className, classDO)
