@@ -47,7 +47,7 @@
       templateDO = self.templateDO,
       classDO = self.classDO,
       moduleDO = self.moduleDO,
-      className, moduleName, bind, ddo, compile, pre, post, link;
+      className, moduleName, moduleImports, bind, ddo, compile, pre, post, link;
 
     if (self.Component.processed && self.Class.processed) {
       className = functionName(classDO);
@@ -56,7 +56,13 @@
         throw new Error('The Class function cannot be anonymous.');
       }
 
-      moduleName = (moduleDO && moduleDO.name) || (componentDO && componentDO.module);
+      if (moduleDO) {
+        moduleName = moduleDO.name;
+        moduleImports = moduleDO.imports;
+      } else {
+        moduleName = componentDO.module;
+        moduleImports = componentDO.moduleImports;
+      }
 
       if (!moduleName) {
         throw new Error('The module name needs to be provided.');
@@ -102,7 +108,7 @@
       // translating "services"
       classDO.$inject = componentDO.services || classDO.$inject || componentDO.$inject;
 
-      angular.module(moduleName)
+      angular.module(moduleName, moduleImports)
         .controller(className, classDO)
         .directive(componentDO.selector, function() {
           return ddo;
