@@ -21,7 +21,7 @@ The directives created by this library follow the conventions below:
 - They always have their `scope` bound to the controller by using `bindToController`.
 
 
-###Module
+### Module
 
 In order to create a directive in Angular 1.X, you need to specify the module it will belong to
 and provide a [Directive Definition Object](https://docs.angularjs.org/api/ng/service/$compile#directive-definition-object).
@@ -30,7 +30,7 @@ the module name that owns the directive being created.
 
 To define the module you can use:
 
-#####1. Module's `name`
+##### 1. Module's `name`
 
 ```javascript
 Module({
@@ -44,7 +44,7 @@ Module({
 );
 ```
 
-#####2. Component's `module`
+##### 2. Component's `module`
 
 ```javascript
 Component({
@@ -58,7 +58,7 @@ Component({
 
 To specify the module's dependencies you can use:
 
-#####1. Module's `imports`
+##### 1. Module's `imports`
 
 ```javascript
 Module({
@@ -73,7 +73,7 @@ Module({
 );
 ```
 
-#####2. Component's `moduleImports`
+##### 2. Component's `moduleImports`
 
 ```javascript
 Component({
@@ -90,7 +90,7 @@ Once you've selected which helper you prefer to deal with modules, it's recommen
 to it to be consistent.
 
 
-###Template
+### Template
 
 This helper defines the template of your directive. It supports the following properties:
 
@@ -127,7 +127,7 @@ This helper defines the template of your directive. It supports the following pr
    ```
 
 
-###Component
+### Component
 
 This helper defines the main aspects of the directive. It supports the following properties:
 
@@ -248,7 +248,7 @@ passed to the helper `Class` if not specified
    ```
 
 
-###Class
+### Class
 
 This helper defines the controller *class* function that will be used by the directive. The
 function must have a name, and its name will be used to register the controller.
