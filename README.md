@@ -1,5 +1,8 @@
 ng2-helpers
 ===========
+
+### Update (Aug 2018): This repo is archived. Leaving it in my profile just because it shows some interesting old-school techniques that were pretty useful at the time this was written.
+
 This library provides helpers that allow the creation of directives in Angular 1.3+ using a syntax
 that's similar to how you create components in Angular 2.0.
 
@@ -272,6 +275,5 @@ and most likely will - rely on functionality that cannot be mimicked with ES5.
 Angular 2.0 itself is still under heavy development and the syntax or the properties names can
 change, so the helpers here *can* become out-of-sync with Angular's 2.0 official syntax.
 
-Borrowing from [PhoneGap's goal](http://phonegap.com/2012/05/09/phonegap-beliefs-goals-and-philosophy/),
-the ultimate purpose of this project is to cease to exist - eventually we'll be able to write
-pure Angular 2.0 applications in ES6, leaving 1.X to its deserved rest.
+Borrowing from PhoneGap's original goal, the ultimate purpose of this project is to cease to exist - eventually
+we'll be able to write pure Angular 2.0 applications in ES6, leaving 1.X to its deserved rest.
